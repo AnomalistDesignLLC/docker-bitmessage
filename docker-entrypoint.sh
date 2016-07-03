@@ -1,8 +1,11 @@
 #!/bin/bash
 set -eo pipefail
 
-mkdir -p /root/.config/PyBitmessage
+if [ ! -d "/root/.config/PyBitmessage" ]; then
+  mkdir -p /root/.config/PyBitmessage
+fi
 
+if [ ! -f "/root/.config/PyBitmessage/keys.dat" ]; then
 echo "[bitmessagesettings]
 daemon = true
 settingsversion = 10
@@ -42,5 +45,6 @@ namecoinrpchost = localhost
 namecoinrpcuser =
 namecoinrpcpassword =
 namecoinrpcport = 8336" > /root/.config/PyBitmessage/keys.dat
+fi
 
 exec "$@"
