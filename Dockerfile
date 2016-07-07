@@ -12,4 +12,4 @@ ENTRYPOINT ["docker-entrypoint.sh"]
 
 EXPOSE 8444 8442
 VOLUME ["/root/.config/PyBitmessage"]
-CMD ["/root/PyBitmessage/src/bitmessagemain.py"]
+CMD ["/usr/bin/python", "/root/PyBitmessage/src/bitmessagemain.py"]
