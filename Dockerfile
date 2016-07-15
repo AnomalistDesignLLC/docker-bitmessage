@@ -1,6 +1,10 @@
 FROM ubuntu:14.04
 MAINTAINER Joshua Noble <acejam@gmail.com>
+
 WORKDIR /root
+ENV RPC_USER bitmessagerpc
+ENV RPC_PASS P@ssw0rd
+ENV RPC_INTERFACE localhost
 
 RUN apt-get update && \
     apt-get install -y python openssl git && \
