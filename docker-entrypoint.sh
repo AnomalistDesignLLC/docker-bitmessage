@@ -10,6 +10,12 @@ echo "[bitmessagesettings]
 daemon = true
 settingsversion = 10
 port = 8444
+apienabled = true
+apiport = 8442
+apiinterface = ${RPC_INTERFACE}
+apiusername = ${RPC_USER}
+apipassword = ${RPC_PASS}
+apinotifypath = true
 timeformat = %%a, %%d %%b %%Y  %%I:%%M %%p
 blackwhitelist = black
 startonlogon = false
