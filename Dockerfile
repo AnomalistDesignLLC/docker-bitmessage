@@ -1,14 +1,12 @@
-FROM ubuntu:14.04
-MAINTAINER Joshua Noble <acejam@gmail.com>
+FROM alpine:3.2
+MAINTAINER Matthew Raymer <matthew.raymer@anomalistdesign.com>
 
 WORKDIR /root
 ENV RPC_USER bitmessagerpc
 ENV RPC_PASS P@ssw0rd
 ENV RPC_INTERFACE localhost
 
-RUN apt-get update && \
-    apt-get install -y python openssl git && \
-    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN apk add --update python openssl collectd supervisor git && rm -rf /var/cache/apk/*
 
 RUN git clone https://github.com/Bitmessage/PyBitmessage
 COPY docker-entrypoint.sh /usr/local/bin/
