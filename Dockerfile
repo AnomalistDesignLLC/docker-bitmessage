@@ -8,7 +8,6 @@ RUN echo "@edge http://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/reposito
 
 WORKDIR /root
 
-ENV RPC_INTERFACE localhost
 ENV RPC_USER bitmessagerpc
 ENV RPC_PASS P@ssw0rd
 ENV SOCKS_TYPE none
