@@ -24,7 +24,9 @@ For example, to run the container with the username "DevUser" and a password of 
 ```
 docker run -d -e RPC_USER="DevUser" -e RPC_PASS="P@ssw0rd123" adllc/bitmessage:latest
 ```
-    
-## Data persistence
 
-Coming soon!
+## Roadmap
+
+* control proxy settings
+* `collectd` integration for bootstrap nodes
+* "securely" storing credentials

@@ -7,17 +7,23 @@ RUN echo "@edge http://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/reposito
     echo "@edgecommunity http://nl.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
 
 WORKDIR /root
+
+ENV RPC_INTERFACE localhost
 ENV RPC_USER bitmessagerpc
 ENV RPC_PASS P@ssw0rd
-ENV RPC_INTERFACE localhost
+ENV SOCKS_TYPE none
+ENV SOCKS_HOSTNAME localhost
+ENV SOCKS_PORT 9050
+ENV SOCKS_AUTH false
+ENV SOCKS_USERNAME socksuser
+ENV SOCKS_PASSWORD socks@user
+ENV SOCKS_LISTEN 9050
 
-RUN apk add --no-cache --update --upgrade py-pip python collectd supervisor git bash curl && \
-    curl -o /usr/bin/envtpl -L https://github.com/appcelerator/envtpl/blob/v1.0.0/envtpl?raw=true && \
-    chmod a+x /usr/bin/envtpl && \
-    rm -rf /tmp/* 
+RUN apk add --no-cache --update --upgrade py-pip python collectd supervisor git bash curl && rm -rf /tmp/* 
     
 RUN pip install --upgrade pip
 RUN pip install msgpack-python
+RUN pip install envtpl
 
 RUN git clone https://github.com/Bitmessage/PyBitmessage
 COPY docker-entrypoint.sh /usr/local/bin/

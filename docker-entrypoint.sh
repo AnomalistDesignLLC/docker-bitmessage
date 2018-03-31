@@ -6,7 +6,7 @@ if [ ! -d "/root/.config/PyBitmessage" ]; then
 fi
 
 if [ ! -f "/root/.config/PyBitmessage/keys.dat" ]; then
-    envtpl /root/keys.dat.tpl > /root/.config/PyBitmessage/keys.dat
+    envtpl -o /root/.config/PyBitmessage/keys.dat /root/keys.dat.tpl 
 fi
 
 exec "$@"
