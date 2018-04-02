@@ -8,17 +8,17 @@ RUN echo "@edge http://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/reposito
 
 WORKDIR /root
 
-ENV RPC_USER bitmessagerpc
-ENV RPC_PASS P@ssw0rd
-ENV SOCKS_TYPE none
-ENV SOCKS_HOSTNAME localhost
-ENV SOCKS_PORT 9050
-ENV SOCKS_AUTH false
-ENV SOCKS_USERNAME socksuser
-ENV SOCKS_PASSWORD socks@user
-ENV SOCKS_LISTEN 9050
+ENV RPC_USER="bitmessagerpc"
+ENV RPC_PASS="P@ssw0rd"
+ENV SOCKS_TYPE="SOCKS5"
+ENV SOCKS_HOSTNAME="localhost"
+ENV SOCKS_PORT=9050
+ENV SOCKS_AUTH="False"
+ENV SOCKS_USERNAME=""
+ENV SOCKS_PASSWORD=""
+ENV SOCKS_LISTEN=9050
 
-RUN apk add --no-cache --update --upgrade py-pip python collectd supervisor git bash curl && rm -rf /tmp/* 
+RUN apk add --no-cache --update --upgrade py-pip python collectd supervisor git bash curl tor@edge && rm -rf /tmp/* 
     
 RUN pip install --upgrade pip
 RUN pip install msgpack-python

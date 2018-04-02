@@ -18,7 +18,13 @@ The following values are configurable:
 
 * `RPC_USER`
 * `RPC_PASS`
-* `RPC_INTERFACE`
+* `SOCKS_TYPE`
+* `SOCKS_HOSTNAME`
+* `SOCKS_PORT`
+* `SOCKS_AUTH`
+* `SOCKS_USERNAME`
+* `SOCKS_PASSWORD`
+* `SOCKS_LISTEN`
 
 For example, to run the container with the username "DevUser" and a password of "P@ssw0rd123", you can run the following:
 ```
