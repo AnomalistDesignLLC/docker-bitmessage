@@ -31,6 +31,11 @@ For example, to run the container with the username "DevUser" and a password of 
 docker run -d -e RPC_USER="DevUser" -e RPC_PASS="P@ssw0rd123" adllc/bitmessage:latest
 ```
 
+Here's an example of running Bitmessage over Tor:
+```
+docker run -d -p 127.0.0.1:8442:8442 -p 8444:8444 -e SOCKS_TYPE=SOCKS5 -e SOCKS_LISTEN=True adllc/bitmessage
+```
+
 ## Roadmap
 
 * control proxy settings

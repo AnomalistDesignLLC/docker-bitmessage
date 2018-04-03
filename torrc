@@ -1,0 +1,9 @@
+Nickname 0000D8540000EB83
+
+SocksPort 0
+ORPort 9001
+
+ExitPolicy reject *:* 
+
+User tord
+DataDirectory /home/tord/.tor
