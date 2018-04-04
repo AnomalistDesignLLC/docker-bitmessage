@@ -19,6 +19,7 @@ ENV SOCKS_USERNAME=""
 ENV SOCKS_PASSWORD=""
 ENV SOCKS_LISTEN="False"
 
+ENV TOR_NICKNAME=""
 ENV TOR_ENV="production"
 ENV TOR_VER="0.3.2.10"
 ENV TOR_MD5=""
@@ -29,7 +30,7 @@ ENV TOR_TEMP tor-$TOR_VER
 
 RUN apk update \
     && apk upgrade \
-    && apk add --no-cache --update --upgrade runit@testing py-pip python python-dev collectd supervisor git bash curl build-base gmp-dev libevent libevent-dev libgmpxx openssl openssl-dev dnsmasq proxychains-ng \
+    && apk add --no-cache --update --upgrade runit@testing py-pip python python-dev collectd supervisor git bash curl build-base gmp-dev libevent libevent-dev libgmpxx openssl openssl-dev \
     && wget -O $TOR_FILE $TOR_URL \
     && tar xzf $TOR_FILE \
     && cd $TOR_TEMP \
@@ -45,13 +46,11 @@ RUN pip install envtpl
 RUN pip install --trusted-host fteproxy obfsproxy
 
 RUN apk del build-base git gmp-dev go python-dev && rm -rf /root/.cache/pip/*
-RUN addgroup -g 19001 -S tord && adduser -u 19001 -G tord -S tord && mkdir -p /etc/tor/
+RUN mkdir -p /etc/tor/
+RUN mkdir -p /root/.config/tor
 
-COPY ./torrc /etc/tor/torrc
-COPY docker-entrypoint.sh /usr/local/bin/
+COPY ./torrc.tpl /etc/tor/
 COPY keys.dat.tpl /root/
-
-#ENTRYPOINT ["docker-entrypoint.sh"]
 
 EXPOSE 8444 8442
 

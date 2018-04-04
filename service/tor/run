@@ -1,8 +1,14 @@
 #!/bin/sh
-chown -Rv tord:tord /home/tord/
 
 cat /etc/tor/torrc
 cat /etc/os-release
 echo 'nameserver 127.0.0.1' > /etc/resolv.conf
 
-/usr/bin/tor -f /etc/tor/torrc
+if [ ! -f "/etc/tor/torrc" ]; then
+    export TOR_NICKNAME=`hexdump -n 16 -e '4/4 "%08X" 1 "\n"' /dev/random | head -c16`
+    echo "-------------------------------------------"
+    echo $TOR_NICKNAME
+    envtpl -o /etc/tor/torrc /etc/tor/torrc.tpl
+fi
+
+exec /usr/bin/tor -f /etc/tor/torrc

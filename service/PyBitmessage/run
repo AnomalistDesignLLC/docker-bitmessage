@@ -1,5 +1,4 @@
 #!/bin/bash
-#!/bin/bash
 set -euxo pipefail
 
 if [ ! -d "/root/.config/PyBitmessage" ]; then
@@ -11,4 +10,4 @@ if [ ! -f "/root/.config/PyBitmessage/keys.dat" ]; then
     chmod 600 /root/.config/PyBitmessage/keys.dat
 fi
 
-/usr/bin/python /root/PyBitmessage/src/bitmessagemain.py
+exec /usr/bin/python /root/PyBitmessage/src/bitmessagemain.py
